@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 import 'text_list.dart';
 
@@ -12,10 +13,15 @@ class TextListView extends StatefulWidget {
 }
 
 class _TextListViewState extends State<TextListView> {
+  late Color color;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     print('did change dep ListView');
+    color = Color(
+      (math.Random().nextDouble() * 0xFFFFFF).toInt(),
+    ).withOpacity(1.0);
   }
 
   @override
@@ -32,9 +38,8 @@ class _TextListViewState extends State<TextListView> {
           child: Container(
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.all(10),
-            color: TextList.of(context)?.indexElem == index
-                ? Theme.of(context).primaryColor
-                : Colors.grey,
+            color:
+                TextList.of(context)?.indexElem == index ? color : Colors.grey,
             child: Text(texts![index]),
           ),
         );
