@@ -21,7 +21,7 @@ class _DescriptionViewState extends State<DescriptionView> {
     print('build Description');
     return Center(
       child: Text(
-        TextList.of(context)!.textList[TextList.of(context)!.indexElem],
+        TextList.of(context)!.text,
       ),
     );
   }

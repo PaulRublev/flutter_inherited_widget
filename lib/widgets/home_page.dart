@@ -13,46 +13,41 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index = 0;
-  int counter = 0;
 
   void changeIndex(int value) {
-    index = value;
-    setState(() {});
-  }
-
-  void changeCounter() {
-    setState(() {
-      ++counter;
-    });
+    if (index != value) {
+      index = value;
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     print('build HomePage');
     return TextList(
+      changeIndex: changeIndex,
       indexElem: index,
       texts: _texts,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('$counter'),
           actions: [
             IconButton(
               onPressed: () {
-                changeCounter();
+                setState(() {});
               },
               icon: const Icon(Icons.refresh),
             ),
           ],
         ),
         body: Row(
-          children: [
+          children: const [
             Expanded(
-              child: TextListView(changeIndexCallback: changeIndex),
+              child: TextListView(),
             ),
-            const VerticalDivider(
+            VerticalDivider(
               width: 5,
             ),
-            const Expanded(child: DescriptionView()),
+            Expanded(child: DescriptionView()),
           ],
         ),
       ),

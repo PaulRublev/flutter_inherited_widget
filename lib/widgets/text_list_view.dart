@@ -4,9 +4,7 @@ import 'dart:math' as math;
 import 'text_list.dart';
 
 class TextListView extends StatefulWidget {
-  final Function(int) changeIndexCallback;
-
-  const TextListView({super.key, required this.changeIndexCallback});
+  const TextListView({super.key});
 
   @override
   State<TextListView> createState() => _TextListViewState();
@@ -33,7 +31,7 @@ class _TextListViewState extends State<TextListView> {
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () {
-            widget.changeIndexCallback(index);
+            TextList.of(context)?.changeIndex(index);
           },
           child: Container(
             padding: const EdgeInsets.all(10),

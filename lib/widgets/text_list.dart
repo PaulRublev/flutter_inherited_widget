@@ -6,11 +6,13 @@ class TextList extends InheritedWidget {
     required this.child,
     required this.indexElem,
     required this.texts,
+    required this.changeIndex,
   }) : super(child: child);
 
   final Widget child;
   final List<String> texts;
   final int indexElem;
+  final Function(int) changeIndex;
 
   static TextList? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<TextList>();
@@ -18,9 +20,10 @@ class TextList extends InheritedWidget {
 
   List<String> get textList => texts;
 
+  String get text => texts[indexElem];
+
   @override
   bool updateShouldNotify(TextList oldWidget) {
-    // return true;
     return oldWidget.indexElem != indexElem;
   }
 }
